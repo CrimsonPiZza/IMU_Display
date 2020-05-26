@@ -1,0 +1,12 @@
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\bin\Debug\IMU_Display.exe.config
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\bin\Debug\IMU_Display.exe
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\bin\Debug\IMU_Display.pdb
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csprojAssemblyReference.cache
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.MainForm.resources
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.Properties.Resources.resources
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.GenerateResource.cache
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.exe
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.pdb
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\bin\Debug\MaterialSkin.dll
+C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CopyComplete
