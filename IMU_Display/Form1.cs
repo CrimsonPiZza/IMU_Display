@@ -549,7 +549,7 @@ namespace IMU_Display
             {
                 abort_Thread(1);
                 disconnect_Device1.Visible = false;
-                connect_Device1.Visible = true;
+                connect_Device1.Enabled = true;
                 device_List1.Enabled = true;
 
                 OpenZen.ZenReleaseSensor(device1_Handle, device1_Sensor);
@@ -567,7 +567,7 @@ namespace IMU_Display
             {
                 abort_Thread(2);
                 disconnect_Device2.Visible = false;
-                connect_Device2.Visible = true;
+                connect_Device2.Enabled = true;
                 device_List2.Enabled = true;
 
                 OpenZen.ZenReleaseSensor(device2_Handle, device2_Sensor);
@@ -584,7 +584,7 @@ namespace IMU_Display
             {
                 abort_Thread(3);
                 disconnect_Device3.Visible = false;
-                connect_Device3.Visible = true;
+                connect_Device3.Enabled = true;
                 device_List3.Enabled = true;
 
                 OpenZen.ZenReleaseSensor(device3_Handle, device3_Sensor);
@@ -601,7 +601,7 @@ namespace IMU_Display
             {
                 abort_Thread(4);
                 disconnect_Device4.Visible = false;
-                connect_Device4.Visible = true;
+                connect_Device4.Enabled = true;
                 device_List4.Enabled = true;
 
                 OpenZen.ZenReleaseSensor(device4_Handle, device4_Sensor);
