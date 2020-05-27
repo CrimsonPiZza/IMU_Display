@@ -10,3 +10,14 @@ C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.exe
 C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.pdb
 C:\Users\User\Source\Repos\IMU_Display\IMU_Display\bin\Debug\MaterialSkin.dll
 C:\Users\User\Source\Repos\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CopyComplete
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\bin\Debug\IMU_Display.exe.config
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\bin\Debug\IMU_Display.exe
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\bin\Debug\IMU_Display.pdb
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csprojAssemblyReference.cache
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.MainForm.resources
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.Properties.Resources.resources
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.GenerateResource.cache
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CoreCompileInputs.cache
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CopyComplete
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.exe
+D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.pdb

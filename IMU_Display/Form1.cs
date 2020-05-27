@@ -263,18 +263,32 @@ namespace IMU_Display
 
                                         if (mImuEventCount % 100 == 0)
                                             continue;
-                                        // read acceleration
+                                        // read raw accelerometer
+                                        OpenZenFloatArray raw_fa = OpenZenFloatArray.frompointer(zenEvent.data.imuData.aRaw);
+                                        // read calibrated accelerometer
                                         OpenZenFloatArray fa = OpenZenFloatArray.frompointer(zenEvent.data.imuData.a);
-                                        // read gyroscope
+                                        // read raw accelerometer
+                                        OpenZenFloatArray raw_fg = OpenZenFloatArray.frompointer(zenEvent.data.imuData.gRaw);
+                                        // read calibrated gyroscope
                                         OpenZenFloatArray fg = OpenZenFloatArray.frompointer(zenEvent.data.imuData.g);
-                                        // read magnetometer
+                                        // read raw magnetometer
+                                        OpenZenFloatArray raw_fb = OpenZenFloatArray.frompointer(zenEvent.data.imuData.bRaw);
+                                        // read calibrated magnetometer
                                         OpenZenFloatArray fb = OpenZenFloatArray.frompointer(zenEvent.data.imuData.b);
-
+                                        // read euler angle
+                                        OpenZenFloatArray fr = OpenZenFloatArray.frompointer(zenEvent.data.imuData.r);
+                                        // read quaternion
+                                        OpenZenFloatArray fq = OpenZenFloatArray.frompointer(zenEvent.data.imuData.q);
                                         // Create new imuData object
                                         IMUData imuData = new IMUData(
+                                            raw_fa.getitem(0), raw_fa.getitem(1), raw_fa.getitem(2),
                                             fa.getitem(0), fa.getitem(1), fa.getitem(2),
+                                            raw_fg.getitem(0), raw_fg.getitem(1), raw_fg.getitem(2),
                                             fg.getitem(0), fg.getitem(1), fg.getitem(2),
-                                            fb.getitem(0), fb.getitem(1), fb.getitem(2)
+                                            raw_fb.getitem(0), raw_fb.getitem(1), raw_fb.getitem(2),
+                                            fb.getitem(0), fb.getitem(1), fb.getitem(2),
+                                            fr.getitem(0), fr.getitem(1), fr.getitem(2),
+                                            fq.getitem(0), fq.getitem(1), fq.getitem(2)
                                             ); // Push data in to the new imuData Object
 
                                         switch (device_No)
@@ -331,16 +345,59 @@ namespace IMU_Display
                     device1_RecieveData_ListView.Items[0].SubItems[2].Text = imuData_Device1.accy.ToString();
                     device1_RecieveData_ListView.Items[0].SubItems[3].Text = imuData_Device1.accz.ToString();
 
+                    // Raw Accelerometer
+                    device1_RecieveData_ListView.Items[1].SubItems[1].Text = imuData_Device1.raw_accx.ToString();
+                    device1_RecieveData_ListView.Items[1].SubItems[2].Text = imuData_Device1.raw_accy.ToString();
+                    device1_RecieveData_ListView.Items[1].SubItems[3].Text = imuData_Device1.raw_accz.ToString();
+
                     // Gyroscope
-                    device1_RecieveData_ListView.Items[1].SubItems[1].Text = imuData_Device1.gysx.ToString();
-                    device1_RecieveData_ListView.Items[1].SubItems[2].Text = imuData_Device1.gysy.ToString();
-                    device1_RecieveData_ListView.Items[1].SubItems[3].Text = imuData_Device1.gysz.ToString();
+                    device1_RecieveData_ListView.Items[2].SubItems[1].Text = imuData_Device1.gysx.ToString();
+                    device1_RecieveData_ListView.Items[2].SubItems[2].Text = imuData_Device1.gysy.ToString();
+                    device1_RecieveData_ListView.Items[2].SubItems[3].Text = imuData_Device1.gysz.ToString();
+
+                    // Raw Gyroscope
+                    device1_RecieveData_ListView.Items[3].SubItems[1].Text = imuData_Device1.raw_gysx.ToString();
+                    device1_RecieveData_ListView.Items[3].SubItems[2].Text = imuData_Device1.raw_gysy.ToString();
+                    device1_RecieveData_ListView.Items[3].SubItems[3].Text = imuData_Device1.raw_gysz.ToString();
 
                     // Magnetometer
-                    device1_RecieveData_ListView.Items[2].SubItems[1].Text = imuData_Device1.mgtx.ToString();
-                    device1_RecieveData_ListView.Items[2].SubItems[2].Text = imuData_Device1.mgty.ToString();
-                    device1_RecieveData_ListView.Items[2].SubItems[3].Text = imuData_Device1.mgtz.ToString();
-                }
+                    device1_RecieveData_ListView.Items[4].SubItems[1].Text = imuData_Device1.mgtx.ToString();
+                    device1_RecieveData_ListView.Items[4].SubItems[2].Text = imuData_Device1.mgty.ToString();
+                    device1_RecieveData_ListView.Items[4].SubItems[3].Text = imuData_Device1.mgtz.ToString();
+
+                    // Raw Gyroscope
+                    device1_RecieveData_ListView.Items[5].SubItems[1].Text = imuData_Device1.raw_mgtx.ToString();
+                    device1_RecieveData_ListView.Items[5].SubItems[2].Text = imuData_Device1.raw_mgty.ToString();
+                    device1_RecieveData_ListView.Items[5].SubItems[3].Text = imuData_Device1.raw_mgtz.ToString();
+
+                    // Read Margin Accelerometer
+                    float[] mA = imuData_Device1.get_Margin_Accel();
+                    device1_RecieveData_ListView.Items[7].SubItems[1].Text = mA[0].ToString();
+                    device1_RecieveData_ListView.Items[7].SubItems[2].Text = mA[1].ToString();
+                    device1_RecieveData_ListView.Items[7].SubItems[3].Text = mA[2].ToString();
+
+                    // Read Margin Gyroscope
+                    float[] mG = imuData_Device1.get_Margin_Gyro();
+                    device1_RecieveData_ListView.Items[8].SubItems[1].Text = mG[0].ToString();
+                    device1_RecieveData_ListView.Items[8].SubItems[2].Text = mG[1].ToString();
+                    device1_RecieveData_ListView.Items[8].SubItems[3].Text = mG[2].ToString();
+
+                    // Read Margin Magnetometer
+                    float[] mM = imuData_Device1.get_Margin_Magneto();
+                    device1_RecieveData_ListView.Items[9].SubItems[1].Text = mM[0].ToString();
+                    device1_RecieveData_ListView.Items[9].SubItems[2].Text = mM[1].ToString();
+                    device1_RecieveData_ListView.Items[9].SubItems[3].Text = mM[2].ToString();
+
+                    // Euler Angle
+                    device1_RecieveData_ListView.Items[10].SubItems[1].Text = imuData_Device1.eulerx.ToString();
+                    device1_RecieveData_ListView.Items[10].SubItems[2].Text = imuData_Device1.eulery.ToString();
+                    device1_RecieveData_ListView.Items[10].SubItems[3].Text = imuData_Device1.eulerz.ToString();
+
+                    // Quaternion
+                    device1_RecieveData_ListView.Items[11].SubItems[1].Text = imuData_Device1.quatx.ToString();
+                    device1_RecieveData_ListView.Items[11].SubItems[2].Text = imuData_Device1.quaty.ToString();
+                    device1_RecieveData_ListView.Items[11].SubItems[3].Text = imuData_Device1.quatz.ToString();
+            }
             }
 
         #endregion
@@ -371,15 +428,58 @@ namespace IMU_Display
                 device2_RecieveData_ListView.Items[0].SubItems[2].Text = imuData_Device2.accy.ToString();
                 device2_RecieveData_ListView.Items[0].SubItems[3].Text = imuData_Device2.accz.ToString();
 
+                // Raw Accelerometer
+                device2_RecieveData_ListView.Items[1].SubItems[1].Text = imuData_Device2.raw_accx.ToString();
+                device2_RecieveData_ListView.Items[1].SubItems[2].Text = imuData_Device2.raw_accy.ToString();
+                device2_RecieveData_ListView.Items[1].SubItems[3].Text = imuData_Device2.raw_accz.ToString();
+
                 // Gyroscope
-                device2_RecieveData_ListView.Items[1].SubItems[1].Text = imuData_Device2.gysx.ToString();
-                device2_RecieveData_ListView.Items[1].SubItems[2].Text = imuData_Device2.gysy.ToString();
-                device2_RecieveData_ListView.Items[1].SubItems[3].Text = imuData_Device2.gysz.ToString();
+                device2_RecieveData_ListView.Items[2].SubItems[1].Text = imuData_Device2.gysx.ToString();
+                device2_RecieveData_ListView.Items[2].SubItems[2].Text = imuData_Device2.gysy.ToString();
+                device2_RecieveData_ListView.Items[2].SubItems[3].Text = imuData_Device2.gysz.ToString();
+
+                // Raw Gyroscope
+                device2_RecieveData_ListView.Items[3].SubItems[1].Text = imuData_Device2.raw_gysx.ToString();
+                device2_RecieveData_ListView.Items[3].SubItems[2].Text = imuData_Device2.raw_gysy.ToString();
+                device2_RecieveData_ListView.Items[3].SubItems[3].Text = imuData_Device2.raw_gysz.ToString();
 
                 // Magnetometer
-                device2_RecieveData_ListView.Items[2].SubItems[1].Text = imuData_Device2.mgtx.ToString();
-                device2_RecieveData_ListView.Items[2].SubItems[2].Text = imuData_Device2.mgty.ToString();
-                device2_RecieveData_ListView.Items[2].SubItems[3].Text = imuData_Device2.mgtz.ToString();
+                device2_RecieveData_ListView.Items[4].SubItems[1].Text = imuData_Device2.mgtx.ToString();
+                device2_RecieveData_ListView.Items[4].SubItems[2].Text = imuData_Device2.mgty.ToString();
+                device2_RecieveData_ListView.Items[4].SubItems[3].Text = imuData_Device2.mgtz.ToString();
+
+                // Raw Gyroscope
+                device2_RecieveData_ListView.Items[5].SubItems[1].Text = imuData_Device2.raw_mgtx.ToString();
+                device2_RecieveData_ListView.Items[5].SubItems[2].Text = imuData_Device2.raw_mgty.ToString();
+                device2_RecieveData_ListView.Items[5].SubItems[3].Text = imuData_Device2.raw_mgtz.ToString();
+
+                // Read Margin Accelerometer
+                float[] mA = imuData_Device2.get_Margin_Accel();
+                device2_RecieveData_ListView.Items[7].SubItems[1].Text = mA[0].ToString();
+                device2_RecieveData_ListView.Items[7].SubItems[2].Text = mA[1].ToString();
+                device2_RecieveData_ListView.Items[7].SubItems[3].Text = mA[2].ToString();
+
+                // Read Margin Gyroscope
+                float[] mG = imuData_Device2.get_Margin_Gyro();
+                device2_RecieveData_ListView.Items[8].SubItems[1].Text = mG[0].ToString();
+                device2_RecieveData_ListView.Items[8].SubItems[2].Text = mG[1].ToString();
+                device2_RecieveData_ListView.Items[8].SubItems[3].Text = mG[2].ToString();
+
+                // Read Margin Magnetometer
+                float[] mM = imuData_Device2.get_Margin_Magneto();
+                device2_RecieveData_ListView.Items[9].SubItems[1].Text = mM[0].ToString();
+                device2_RecieveData_ListView.Items[9].SubItems[2].Text = mM[1].ToString();
+                device2_RecieveData_ListView.Items[9].SubItems[3].Text = mM[2].ToString();
+
+                // Euler Angle
+                device2_RecieveData_ListView.Items[10].SubItems[1].Text = imuData_Device2.eulerx.ToString();
+                device2_RecieveData_ListView.Items[10].SubItems[2].Text = imuData_Device2.eulery.ToString();
+                device2_RecieveData_ListView.Items[10].SubItems[3].Text = imuData_Device2.eulerz.ToString();
+
+                // Quaternion
+                device2_RecieveData_ListView.Items[11].SubItems[1].Text = imuData_Device2.quatx.ToString();
+                device2_RecieveData_ListView.Items[11].SubItems[2].Text = imuData_Device2.quaty.ToString();
+                device2_RecieveData_ListView.Items[11].SubItems[3].Text = imuData_Device2.quatz.ToString();
             }
         }
 
@@ -412,15 +512,58 @@ namespace IMU_Display
                     device3_RecieveData_ListView.Items[0].SubItems[2].Text = imuData_Device3.accy.ToString();
                     device3_RecieveData_ListView.Items[0].SubItems[3].Text = imuData_Device3.accz.ToString();
 
+                    // Raw Accelerometer
+                    device3_RecieveData_ListView.Items[1].SubItems[1].Text = imuData_Device3.raw_accx.ToString();
+                    device3_RecieveData_ListView.Items[1].SubItems[2].Text = imuData_Device3.raw_accy.ToString();
+                    device3_RecieveData_ListView.Items[1].SubItems[3].Text = imuData_Device3.raw_accz.ToString();
+
                     // Gyroscope
-                    device3_RecieveData_ListView.Items[1].SubItems[1].Text = imuData_Device3.gysx.ToString();
-                    device3_RecieveData_ListView.Items[1].SubItems[2].Text = imuData_Device3.gysy.ToString();
-                    device3_RecieveData_ListView.Items[1].SubItems[3].Text = imuData_Device3.gysz.ToString();
+                    device3_RecieveData_ListView.Items[2].SubItems[1].Text = imuData_Device3.gysx.ToString();
+                    device3_RecieveData_ListView.Items[2].SubItems[2].Text = imuData_Device3.gysy.ToString();
+                    device3_RecieveData_ListView.Items[2].SubItems[3].Text = imuData_Device3.gysz.ToString();
+
+                    // Raw Gyroscope
+                    device3_RecieveData_ListView.Items[3].SubItems[1].Text = imuData_Device3.raw_gysx.ToString();
+                    device3_RecieveData_ListView.Items[3].SubItems[2].Text = imuData_Device3.raw_gysy.ToString();
+                    device3_RecieveData_ListView.Items[3].SubItems[3].Text = imuData_Device3.raw_gysz.ToString();
 
                     // Magnetometer
-                    device3_RecieveData_ListView.Items[2].SubItems[1].Text = imuData_Device3.mgtx.ToString();
-                    device3_RecieveData_ListView.Items[2].SubItems[2].Text = imuData_Device3.mgty.ToString();
-                    device3_RecieveData_ListView.Items[2].SubItems[3].Text = imuData_Device3.mgtz.ToString();
+                    device3_RecieveData_ListView.Items[4].SubItems[1].Text = imuData_Device3.mgtx.ToString();
+                    device3_RecieveData_ListView.Items[4].SubItems[2].Text = imuData_Device3.mgty.ToString();
+                    device3_RecieveData_ListView.Items[4].SubItems[3].Text = imuData_Device3.mgtz.ToString();
+
+                    // Raw Gyroscope
+                    device3_RecieveData_ListView.Items[5].SubItems[1].Text = imuData_Device3.raw_mgtx.ToString();
+                    device3_RecieveData_ListView.Items[5].SubItems[2].Text = imuData_Device3.raw_mgty.ToString();
+                    device3_RecieveData_ListView.Items[5].SubItems[3].Text = imuData_Device3.raw_mgtz.ToString();
+
+                    // Read Margin Accelerometer
+                    float[] mA = imuData_Device3.get_Margin_Accel();
+                    device3_RecieveData_ListView.Items[7].SubItems[1].Text = mA[0].ToString();
+                    device3_RecieveData_ListView.Items[7].SubItems[2].Text = mA[1].ToString();
+                    device3_RecieveData_ListView.Items[7].SubItems[3].Text = mA[2].ToString();
+
+                    // Read Margin Gyroscope
+                    float[] mG = imuData_Device3.get_Margin_Gyro();
+                    device3_RecieveData_ListView.Items[8].SubItems[1].Text = mG[0].ToString();
+                    device3_RecieveData_ListView.Items[8].SubItems[2].Text = mG[1].ToString();
+                    device3_RecieveData_ListView.Items[8].SubItems[3].Text = mG[2].ToString();
+
+                    // Read Margin Magnetometer
+                    float[] mM = imuData_Device3.get_Margin_Magneto();
+                    device3_RecieveData_ListView.Items[9].SubItems[1].Text = mM[0].ToString();
+                    device3_RecieveData_ListView.Items[9].SubItems[2].Text = mM[1].ToString();
+                    device3_RecieveData_ListView.Items[9].SubItems[3].Text = mM[2].ToString();
+
+                    // Euler Angle
+                    device3_RecieveData_ListView.Items[10].SubItems[1].Text = imuData_Device3.eulerx.ToString();
+                    device3_RecieveData_ListView.Items[10].SubItems[2].Text = imuData_Device3.eulery.ToString();
+                    device3_RecieveData_ListView.Items[10].SubItems[3].Text = imuData_Device3.eulerz.ToString();
+
+                    // Quaternion
+                    device3_RecieveData_ListView.Items[11].SubItems[1].Text = imuData_Device3.quatx.ToString();
+                    device3_RecieveData_ListView.Items[11].SubItems[2].Text = imuData_Device3.quaty.ToString();
+                    device3_RecieveData_ListView.Items[11].SubItems[3].Text = imuData_Device3.quatz.ToString();
                 }
             }
 
@@ -446,22 +589,65 @@ namespace IMU_Display
 
             private void device4_DataSetter_Tick(object sender, EventArgs e)
             {
-                if (!imuData_Device3.isNotSet())
+                if (!imuData_Device4.isNotSet())
                 {
                     // Accelerometer
                     device4_RecieveData_ListView.Items[0].SubItems[1].Text = imuData_Device4.accx.ToString();
                     device4_RecieveData_ListView.Items[0].SubItems[2].Text = imuData_Device4.accy.ToString();
                     device4_RecieveData_ListView.Items[0].SubItems[3].Text = imuData_Device4.accz.ToString();
 
+                    // Raw Accelerometer
+                    device4_RecieveData_ListView.Items[1].SubItems[1].Text = imuData_Device4.raw_accx.ToString();
+                    device4_RecieveData_ListView.Items[1].SubItems[2].Text = imuData_Device4.raw_accy.ToString();
+                    device4_RecieveData_ListView.Items[1].SubItems[3].Text = imuData_Device4.raw_accz.ToString();
+
                     // Gyroscope
-                    device4_RecieveData_ListView.Items[1].SubItems[1].Text = imuData_Device4.gysx.ToString();
-                    device4_RecieveData_ListView.Items[1].SubItems[2].Text = imuData_Device4.gysy.ToString();
-                    device4_RecieveData_ListView.Items[1].SubItems[3].Text = imuData_Device4.gysz.ToString();
+                    device4_RecieveData_ListView.Items[2].SubItems[1].Text = imuData_Device4.gysx.ToString();
+                    device4_RecieveData_ListView.Items[2].SubItems[2].Text = imuData_Device4.gysy.ToString();
+                    device4_RecieveData_ListView.Items[2].SubItems[3].Text = imuData_Device4.gysz.ToString();
+
+                    // Raw Gyroscope
+                    device4_RecieveData_ListView.Items[3].SubItems[1].Text = imuData_Device4.raw_gysx.ToString();
+                    device4_RecieveData_ListView.Items[3].SubItems[2].Text = imuData_Device4.raw_gysy.ToString();
+                    device4_RecieveData_ListView.Items[3].SubItems[3].Text = imuData_Device4.raw_gysz.ToString();
 
                     // Magnetometer
-                    device4_RecieveData_ListView.Items[2].SubItems[1].Text = imuData_Device4.mgtx.ToString();
-                    device4_RecieveData_ListView.Items[2].SubItems[2].Text = imuData_Device4.mgty.ToString();
-                    device4_RecieveData_ListView.Items[2].SubItems[3].Text = imuData_Device4.mgtz.ToString();
+                    device4_RecieveData_ListView.Items[4].SubItems[1].Text = imuData_Device4.mgtx.ToString();
+                    device4_RecieveData_ListView.Items[4].SubItems[2].Text = imuData_Device4.mgty.ToString();
+                    device4_RecieveData_ListView.Items[4].SubItems[3].Text = imuData_Device4.mgtz.ToString();
+
+                    // Raw Gyroscope
+                    device4_RecieveData_ListView.Items[5].SubItems[1].Text = imuData_Device4.raw_mgtx.ToString();
+                    device4_RecieveData_ListView.Items[5].SubItems[2].Text = imuData_Device4.raw_mgty.ToString();
+                    device4_RecieveData_ListView.Items[5].SubItems[3].Text = imuData_Device4.raw_mgtz.ToString();
+
+                    // Read Margin Accelerometer
+                    float[] mA = imuData_Device4.get_Margin_Accel();
+                    device4_RecieveData_ListView.Items[7].SubItems[1].Text = mA[0].ToString();
+                    device4_RecieveData_ListView.Items[7].SubItems[2].Text = mA[1].ToString();
+                    device4_RecieveData_ListView.Items[7].SubItems[3].Text = mA[2].ToString();
+
+                    // Read Margin Gyroscope
+                    float[] mG = imuData_Device4.get_Margin_Gyro();
+                    device4_RecieveData_ListView.Items[8].SubItems[1].Text = mG[0].ToString();
+                    device4_RecieveData_ListView.Items[8].SubItems[2].Text = mG[1].ToString();
+                    device4_RecieveData_ListView.Items[8].SubItems[3].Text = mG[2].ToString();
+
+                    // Read Margin Magnetometer
+                    float[] mM = imuData_Device4.get_Margin_Magneto();
+                    device4_RecieveData_ListView.Items[9].SubItems[1].Text = mM[0].ToString();
+                    device4_RecieveData_ListView.Items[9].SubItems[2].Text = mM[1].ToString();
+                    device4_RecieveData_ListView.Items[9].SubItems[3].Text = mM[2].ToString();
+
+                    // Euler Angle
+                    device4_RecieveData_ListView.Items[10].SubItems[1].Text = imuData_Device4.eulerx.ToString();
+                    device4_RecieveData_ListView.Items[10].SubItems[2].Text = imuData_Device4.eulery.ToString();
+                    device4_RecieveData_ListView.Items[10].SubItems[3].Text = imuData_Device4.eulerz.ToString();
+
+                    // Quaternion
+                    device4_RecieveData_ListView.Items[11].SubItems[1].Text = imuData_Device4.quatx.ToString();
+                    device4_RecieveData_ListView.Items[11].SubItems[2].Text = imuData_Device4.quaty.ToString();
+                    device4_RecieveData_ListView.Items[11].SubItems[3].Text = imuData_Device4.quatz.ToString();
                 }
             }
 
@@ -472,15 +658,18 @@ namespace IMU_Display
             // Define
             var data = new[]
             {
-                new []{"Accelerometer", "0", "0","0"},
-                new []{"Gyroscope", "0", "0", "0"},
-                new []{"Magnetometer", "0", "0", "0"}
-            };
-
-            var calculated = new[]
-            {
-                new []{"0", "0","0"},
-
+                new []{"Calibrated Accelerometer", "0", "0","0"},
+                new []{"Raw Accelerometer", "0", "0","0"},
+                new []{"Calibrated Gyroscope", "0", "0", "0"},
+                new []{"Raw Gyroscope", "0", "0","0"},
+                new []{"Calibrated Magnetometer", "0", "0", "0"},
+                new []{"Raw Magnetometer", "0", "0","0"},
+                new []{"", "", "",""},
+                new []{"Margin Accelerometer", "0", "0","0"},
+                new []{"Margin Gyroscope", "0", "0","0"},
+                new []{"Margin Magnetometer", "0", "0","0"},
+                new []{"Euler Angle", "0", "0","0"},
+                new []{"Quaternion", "0", "0","0"},
             };
 
             // Add Recieve Data
@@ -496,18 +685,6 @@ namespace IMU_Display
                 device4_RecieveData_ListView.Items.Add(item4);
             }
 
-            // Add Calculated Data
-            foreach (string[] version in calculated)
-            {
-                ListViewItem item1 = new ListViewItem(version),
-                    item2 = (ListViewItem) item1.Clone(),
-                    item3 = (ListViewItem) item1.Clone(),
-                    item4 = (ListViewItem) item1.Clone();
-                device1_Calculated_ListView.Items.Add(item1);
-                device2_Calculated_ListView.Items.Add(item2);
-                device3_Calculated_ListView.Items.Add(item3);
-                device4_Calculated_ListView.Items.Add(item4);
-            }
         }
 
 
@@ -613,5 +790,6 @@ namespace IMU_Display
         }
 
         #endregion
+
     }
 }
