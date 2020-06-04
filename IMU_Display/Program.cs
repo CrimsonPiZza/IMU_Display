@@ -16,6 +16,7 @@ namespace IMU_Display
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(FormProvider.getMain());
             Application.Run(FormProvider.getMain());
         }
     }

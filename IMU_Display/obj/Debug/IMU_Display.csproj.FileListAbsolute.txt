@@ -21,3 +21,23 @@ D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CoreC
 D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CopyComplete
 D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.exe
 D:\Internship\BakcHoe\IMU_Display\IMU_Display\obj\Debug\IMU_Display.pdb
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\IMU_Display.exe.config
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\IMU_Display.exe
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\IMU_Display.pdb
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\MaterialSkin.dll
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csprojAssemblyReference.cache
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.MainForm.resources
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.Properties.Resources.resources
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.GenerateResource.cache
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CoreCompileInputs.cache
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.csproj.CopyComplete
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.exe
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.pdb
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.Graph_Plotting.resources
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.WinForms.dll
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.WinForms.pdb
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.WinForms.xml
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.Wpf.pdb
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.Wpf.xml
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.pdb
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.xml

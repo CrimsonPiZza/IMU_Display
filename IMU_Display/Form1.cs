@@ -1,11 +1,13 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
@@ -13,12 +15,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Web.Script.Serialization;
 
 namespace IMU_Display
 {
     public partial class MainForm : MaterialForm
     {
         #region Declaration
+        public static SensorsData sensorsData = new SensorsData();
+
         // Device Data
         public static IMUData imuData_Device1 = new IMUData();
         public static IMUData imuData_Device2 = new IMUData();
@@ -142,8 +147,8 @@ namespace IMU_Display
             ZenSensorHandle_t device_Sensor;
 
             public ZenSensorDesc mSensor;
-            public uint mImuEventCount = 0;
             public int device_No;
+            public uint count = 0;
             public ExThread(ZenSensorDesc sensor, int device_No, ZenClientHandle_t device_Handle, ZenSensorHandle_t device_Sensor)
             {
                 this.mSensor = sensor;
@@ -259,10 +264,8 @@ namespace IMU_Display
                                 switch (zenEvent.eventType)
                                 {
                                     case (int)ZenImuEvent.ZenImuEvent_Sample:
-                                        mImuEventCount++;
+                                        count++;
 
-                                        if (mImuEventCount % 100 == 0)
-                                            continue;
                                         // read raw accelerometer
                                         OpenZenFloatArray raw_fa = OpenZenFloatArray.frompointer(zenEvent.data.imuData.aRaw);
                                         // read calibrated accelerometer
@@ -279,6 +282,8 @@ namespace IMU_Display
                                         OpenZenFloatArray fr = OpenZenFloatArray.frompointer(zenEvent.data.imuData.r);
                                         // read quaternion
                                         OpenZenFloatArray fq = OpenZenFloatArray.frompointer(zenEvent.data.imuData.q);
+
+
                                         // Create new imuData object
                                         IMUData imuData = new IMUData(
                                             raw_fa.getitem(0), raw_fa.getitem(1), raw_fa.getitem(2),
@@ -295,6 +300,7 @@ namespace IMU_Display
                                         {
                                             case (1):
                                                 transferDevice1_Data(imuData);
+                                                //Debug.WriteLine(count);
                                                 break;
                                             case (2):
                                                 transferDevice2_Data(imuData);
@@ -304,6 +310,7 @@ namespace IMU_Display
                                                 break;
                                             case (4):
                                                 transferDevice4_Data(imuData);
+                                                Debug.WriteLine(count);
                                                 break;
                                         }
 
@@ -791,5 +798,25 @@ namespace IMU_Display
 
         #endregion
 
+        private void device1_ShowGraph_Click(object sender, EventArgs e)
+        {
+            new Graph_Plotting("Device #1 ").Show();
+        }
+
+        private void writeData_Btn_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.SaveFileDialog save = new System.Windows.Forms.SaveFileDialog();
+            save.Filter = "JSON |*.json";
+            save.FileName = "SampleIMUData";
+
+            if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                String path = save.FileName;
+                sensorsData.addAllData(imuData_Device1, imuData_Device2, imuData_Device3, imuData_Device4);
+                string json = new JavaScriptSerializer().Serialize(sensorsData);
+
+                File.WriteAllText(path, json);
+            }
+        }
     }
 }

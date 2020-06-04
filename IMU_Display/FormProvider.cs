@@ -9,6 +9,7 @@ namespace IMU_Display
     class FormProvider
     {
         private static MainForm mainForm;
+        private static Graph_Plotting graphPlot;
 
         public static MainForm getMain()
         {
@@ -18,6 +19,16 @@ namespace IMU_Display
                 return mainForm;
             }
             return mainForm;
+        }
+
+        public static Graph_Plotting getGraphPlot(String title)
+        {
+            if (graphPlot == null || graphPlot.IsDisposed)
+            {
+                graphPlot = new Graph_Plotting(title);
+                return graphPlot;
+            }
+            return graphPlot;
         }
     }
 }
