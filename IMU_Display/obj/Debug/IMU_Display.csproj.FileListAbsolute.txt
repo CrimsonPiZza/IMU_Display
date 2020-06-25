@@ -41,3 +41,4 @@ D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.Wpf.
 D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.Wpf.xml
 D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.pdb
 D:\Internship\Machine Guidance\IMU_Display\IMU_Display\bin\Debug\LiveCharts.xml
+D:\Internship\Machine Guidance\IMU_Display\IMU_Display\obj\Debug\IMU_Display.Rotation_Measuremnet.resources

@@ -818,5 +818,10 @@ namespace IMU_Display
                 File.WriteAllText(path, json);
             }
         }
+
+        private void measure_Rotation_btn_Click(object sender, EventArgs e)
+        {
+            new Rotation_Measuremnet().Show();
+        }
     }
 }

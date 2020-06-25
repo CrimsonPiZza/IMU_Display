@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.MaterialListView = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.writeData_Btn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.disconnect_Device4 = new System.Windows.Forms.Button();
             this.disconnect_Device3 = new System.Windows.Forms.Button();
             this.disconnect_Device2 = new System.Windows.Forms.Button();
@@ -49,6 +51,7 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.device_List1 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.measure_Rotation_btn = new MaterialSkin.Controls.MaterialFlatButton();
             this.device1_ShowGraph = new MaterialSkin.Controls.MaterialFlatButton();
             this.device1_RecieveData_ListView = new MaterialSkin.Controls.MaterialListView();
             this.item = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -81,15 +84,13 @@
             this.device2_DataSetter = new System.Windows.Forms.Timer(this.components);
             this.device3_DataSetter = new System.Windows.Forms.Timer(this.components);
             this.device4_DataSetter = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.writeData_Btn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.MaterialListView.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MaterialListView
@@ -136,6 +137,32 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Connection";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.writeData_Btn);
+            this.groupBox1.Location = new System.Drawing.Point(399, 544);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(173, 66);
+            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Log Writing";
+            // 
+            // writeData_Btn
+            // 
+            this.writeData_Btn.AutoSize = true;
+            this.writeData_Btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.writeData_Btn.Depth = 0;
+            this.writeData_Btn.Icon = null;
+            this.writeData_Btn.Location = new System.Drawing.Point(6, 19);
+            this.writeData_Btn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.writeData_Btn.Name = "writeData_Btn";
+            this.writeData_Btn.Primary = true;
+            this.writeData_Btn.Size = new System.Drawing.Size(160, 36);
+            this.writeData_Btn.TabIndex = 0;
+            this.writeData_Btn.Text = "Write Data To JSON";
+            this.writeData_Btn.UseVisualStyleBackColor = true;
+            this.writeData_Btn.Click += new System.EventHandler(this.writeData_Btn_Click);
             // 
             // disconnect_Device4
             // 
@@ -374,6 +401,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.measure_Rotation_btn);
             this.tabPage2.Controls.Add(this.device1_ShowGraph);
             this.tabPage2.Controls.Add(this.device1_RecieveData_ListView);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -383,6 +411,24 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Device #1";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // measure_Rotation_btn
+            // 
+            this.measure_Rotation_btn.AutoSize = true;
+            this.measure_Rotation_btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.measure_Rotation_btn.Depth = 0;
+            this.measure_Rotation_btn.Icon = null;
+            this.measure_Rotation_btn.Location = new System.Drawing.Point(294, 574);
+            this.measure_Rotation_btn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.measure_Rotation_btn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.measure_Rotation_btn.Name = "measure_Rotation_btn";
+            this.measure_Rotation_btn.Primary = false;
+            this.measure_Rotation_btn.Size = new System.Drawing.Size(154, 36);
+            this.measure_Rotation_btn.TabIndex = 2;
+            this.measure_Rotation_btn.Text = "Measure Rotation";
+            this.measure_Rotation_btn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.measure_Rotation_btn.UseVisualStyleBackColor = true;
+            this.measure_Rotation_btn.Click += new System.EventHandler(this.measure_Rotation_btn_Click);
             // 
             // device1_ShowGraph
             // 
@@ -702,6 +748,7 @@
             // device1_DataSetter
             // 
             this.device1_DataSetter.Enabled = true;
+            this.device1_DataSetter.Interval = 1;
             this.device1_DataSetter.Tick += new System.EventHandler(this.device1_DataSetter_Tick);
             // 
             // device2_DataSetter
@@ -719,32 +766,6 @@
             this.device4_DataSetter.Enabled = true;
             this.device4_DataSetter.Tick += new System.EventHandler(this.device4_DataSetter_Tick);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.writeData_Btn);
-            this.groupBox1.Location = new System.Drawing.Point(399, 544);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(173, 66);
-            this.groupBox1.TabIndex = 17;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Log Writing";
-            // 
-            // writeData_Btn
-            // 
-            this.writeData_Btn.AutoSize = true;
-            this.writeData_Btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.writeData_Btn.Depth = 0;
-            this.writeData_Btn.Icon = null;
-            this.writeData_Btn.Location = new System.Drawing.Point(6, 19);
-            this.writeData_Btn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.writeData_Btn.Name = "writeData_Btn";
-            this.writeData_Btn.Primary = true;
-            this.writeData_Btn.Size = new System.Drawing.Size(160, 36);
-            this.writeData_Btn.TabIndex = 0;
-            this.writeData_Btn.Text = "Write Data To JSON";
-            this.writeData_Btn.UseVisualStyleBackColor = true;
-            this.writeData_Btn.Click += new System.EventHandler(this.writeData_Btn_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -759,6 +780,8 @@
             this.MaterialListView.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -767,8 +790,6 @@
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -829,6 +850,7 @@
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton4;
         private System.Windows.Forms.GroupBox groupBox1;
         private MaterialSkin.Controls.MaterialRaisedButton writeData_Btn;
+        private MaterialSkin.Controls.MaterialFlatButton measure_Rotation_btn;
     }
 }
 
